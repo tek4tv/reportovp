@@ -32,11 +32,11 @@ datasources:
     url: jdbc:mysql://localhost:3306/tek4tv_report
     driverClassName: com.mysql.cj.jdbc.Driver
     username: tek4tv_report
-#    password: '123456a@'
-    password: 'tek4tv'
+    password: '123456a@'
+#    password: 'tek4tv'
     schema-generate: CREATE_DROP
     dialect: MYSQL
-jpa.default.properties.hibernate.hbm2ddl.auto: update
+jpa.default.properties.hibernate.hbm2ddl.auto: none
 
 ovp:
   url: https://playback.tek4tv.vn/v1

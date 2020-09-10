@@ -3,12 +3,12 @@ package com.tek4tv.report.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
-@EqualsAndHashCode
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "report")
 public class ReportEntity {
@@ -71,7 +71,28 @@ public class ReportEntity {
     @Column(name = "video_second_viewed")
     private String videoSecondViewed;
     @Column(name = "video_view")
-    private String videoView;
+    private Long videoView;
+    @Column(name = "insert_datetime", insertable = false)
+    private Date insertDatetime;
+    @Transient
+    private String label;
+    @Transient
+    private long count;
+    @Transient
+    private long sumOfView;
+    @Transient
+    private double avgOfDuration;
+
+    public ReportEntity(String label, long count) {
+        this.label = label;
+        this.count = count;
+    }
+
+    public ReportEntity(String label, long sumOfView, double avgOfDuration) {
+        this.label = label;
+        this.sumOfView = sumOfView;
+        this.avgOfDuration = avgOfDuration;
+    }
 
     public Long getId() {
         return id;
@@ -297,11 +318,19 @@ public class ReportEntity {
         this.videoSecondViewed = videoSecondViewed;
     }
 
-    public String getVideoView() {
+    public Long getVideoView() {
         return videoView;
     }
 
-    public void setVideoView(String videoView) {
+    public void setVideoView(Long videoView) {
         this.videoView = videoView;
+    }
+
+    public Date getInsertDatetime() {
+        return insertDatetime;
+    }
+
+    public void setInsertDatetime(Date insertDatetime) {
+        this.insertDatetime = insertDatetime;
     }
 }
